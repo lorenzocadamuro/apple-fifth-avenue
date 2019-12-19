@@ -8,6 +8,12 @@ A tutorial on how to create the Apple Fifth Avenue Cube using WebGL, Lorenzo Cad
 
 [Demo](http://tympanus.net/Development/.../)
 
+## Instruction
+
+- Run `npm i` to install all dependencies
+- Run `npm run dev` to launch the dev mode
+- Run `npm run build` to generate the built
+
 ## Credits
 
 [regl-project](https://github.com/regl-project/regl)
