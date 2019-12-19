@@ -21,11 +21,15 @@ const CONFIG = {
   rotateY: 1,
   rotateZ: 1,
   scale: 1,
-  reflectionOpacity: 0.3
+  borderWidth: 0.008,
+  displacementLength: 0.028,
+  reflectionOpacity: 0.3,
+  scene: 3
 }
 
 gui.get((gui) => {
   const folder = gui.addFolder('Cube')
+
 
   folder.add(CONFIG, 'translateX', -30, 30).step(0.01)
   folder.add(CONFIG, 'translateY', -30, 30).step(0.01)
@@ -35,7 +39,10 @@ gui.get((gui) => {
   folder.add(CONFIG, 'rotateY', 0, 10).step(0.1)
   folder.add(CONFIG, 'rotateZ', 0, 10).step(0.1)
   folder.add(CONFIG, 'scale', 0, 10).step(0.01)
+  folder.add(CONFIG, 'borderWidth', 0, 0.1).step(0.01)
+  folder.add(CONFIG, 'displacementLength', 0, 2).step(0.01)
   folder.add(CONFIG, 'reflectionOpacity', 0, 1).step(0.01)
+  folder.add(CONFIG, 'scene', { 'Apple': 3, 'Mask': 2, 'Displacement': 1 })
 })
 
 export default regl({
@@ -69,10 +76,25 @@ export default regl({
     textureMatrix: (context, {textureMatrix}) => {
       return textureMatrix
     },
+    borderWidth: () => {
+      const {borderWidth} = CONFIG
+
+      return borderWidth
+    },
+    displacementLength: () => {
+      const {displacementLength} = CONFIG
+
+      return displacementLength
+    },
     reflectionOpacity: () => {
       const {reflectionOpacity} = CONFIG
 
       return reflectionOpacity
+    },
+    scene: () => {
+      const {scene} = CONFIG
+
+      return parseFloat(scene)
     }
   },
   attributes: {
@@ -88,7 +110,10 @@ export default regl({
     u_texture: regl.context('texture'),
     u_reflection: regl.context('reflection'),
     u_tick: regl.context('tick'),
+    u_borderWidth: regl.context('borderWidth'),
+    u_displacementLength: regl.context('displacementLength'),
     u_reflectionOpacity: regl.context('reflectionOpacity'),
+    u_scene: regl.context('scene'),
   },
   cull: {
     enable: true,

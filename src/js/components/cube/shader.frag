@@ -6,7 +6,10 @@ uniform int u_typeId;
 uniform sampler2D u_texture;
 uniform samplerCube u_reflection;
 uniform float u_tick;
+uniform float u_borderWidth;
+uniform float u_displacementLength;
 uniform float u_reflectionOpacity;
+uniform int u_scene;
 
 varying vec3 v_normal;
 varying vec3 v_center;
@@ -39,7 +42,7 @@ vec2 rotateUV(vec2 uv, float rotation) {
 vec4 type1() {
   vec2 toCenter = v_center.xy - v_point.xy;
   float angle = (atan(toCenter.y, toCenter.x) / PI2) + 0.5;
-  float displacement = borders(v_uv, 0.028) + borders(v_uv, 0.06) * 0.3;
+  float displacement = borders(v_uv, u_displacementLength) + borders(v_uv, u_displacementLength * 2.143) * 0.3;
 
   return vec4(angle, displacement, 0.0, 1.0);
 }
@@ -53,38 +56,40 @@ vec4 type3() {
 
   vec4 strokeColor = radialRainbow(st, u_tick);
   float depth = clamp(smoothstep(-1.0, 1.0, v_depth), 0.6, 0.9);
-  vec4 stroke = strokeColor * vec4(borders(v_uv, 0.011)) * depth;
+  vec4 stroke = strokeColor * vec4(borders(v_uv, u_borderWidth)) * depth;
 
-  vec4 final;
+  vec4 texture;
 
   if (u_face == -1) {
     vec3 normal = normalize(v_normal);
-    vec4 texture = textureCube(u_reflection, normal);
+    texture = textureCube(u_reflection, normalize(v_normal));
 
     texture.a *= u_reflectionOpacity * depth;
-
-    if (stroke.a > 0.0) {
-      final = stroke;
-    } else {
-      final = texture;
-    }
   }  else {
-    vec4 texture = texture2D(u_texture, st);
-    
-    final = texture + stroke;
+    texture = texture2D(u_texture, st);
   }
 
-  return final;
+  if (stroke.a > 0.0) {
+    return stroke - texture.a;
+  } else {
+    return texture;
+  }
+}
+
+vec4 switchScene(int id) {
+  if (id == 1) {
+    return type1();
+  } else if (id == 2) {
+    return type2();
+  } else if (id == 3) {
+    return type3();
+  }
 }
 
 void main() {
-  if (u_typeId == 1) {
-    gl_FragColor = type1();
-  } else if (u_typeId == 2) {
-    gl_FragColor = type2();
-  } else if (u_typeId == 3) {
-    gl_FragColor = type3();
+  if (u_scene == 3) {
+    gl_FragColor = switchScene(u_typeId);
   } else {
-    discard;
+    gl_FragColor = switchScene(u_scene);
   }
 }
