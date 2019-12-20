@@ -11,7 +11,7 @@
 body {
 	margin: 0;
 	--color-text: #fff;
-	--color-bg: #fff;
+	--color-bg: #000;
 	--color-link: #aaa;
 	--color-link-hover: #333;
 	color: var(--color-text);
@@ -31,6 +31,10 @@ a:hover,
 a:focus {
 	color: var(--color-link-hover);
 	outline: none;
+}
+
+body .dg.ac {
+  z-index: 10000;
 }
 
 .dg.main > ul {
@@ -94,9 +98,9 @@ body .dg.main .close-button:hover {
 		pointer-events: none;
 		grid-template-columns: 75% 25%;
 		grid-template-rows: auto auto auto;
-		grid-template-areas: '... ...'
+		grid-template-areas: 'title ...'
 							'... ...'
-							'title links';
+							'... links';
 	}
 	.frame__title {
 		margin: 0;
