@@ -1,12 +1,12 @@
-# Apple Fifth Avenue in WebGL
+# Apple Fifth Avenue Cube in WebGL
 
-A tutorial on how to create the Apple Fifth Avenue Cube using WebGL, Lorenzo Cadamuro.
+Demo for the tutorial on how to re-create the Apple Fifth Avenue cube animation using WebGL. By Lorenzo Cadamuro.
 
-![Image Title](link)
+![Image Title](https://tympanus.net/codrops/wp-content/uploads/2019/12/AppleCube_featured.png)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=)
+[Article on Codrops](https://tympanus.net/codrops/?p=45241)
 
-[Demo](http://tympanus.net/Development/.../)
+[Demo](http://tympanus.net/Tutorials/apple-fifth-avenue/)
 
 ## Instruction
 
@@ -18,12 +18,14 @@ A tutorial on how to create the Apple Fifth Avenue Cube using WebGL, Lorenzo Cad
 
 [regl-project](https://github.com/regl-project/regl)
 
+**Please note that the Apple logo is a trademark of Apple Inc., registered in the U.S. and other countries. We are only using it here for demonstration purposes.**
+
 ## License
 This resource can be used freely if integrated or build upon in personal or commercial projects such as websites, web apps and web templates intended for sale. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
 
 ## Misc
 
-Follow *Author*: [lorenzocadamuro.com](http://lorenzocadamuro.com), [Twitter](https://twitter.com/lorenzocadamuro)
+Follow Lorenzo: [lorenzocadamuro.com](http://lorenzocadamuro.com), [Twitter](https://twitter.com/lorenzocadamuro)
 
 Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www.facebook.com/codrops), [Google+](https://plus.google.com/101095823814290637419), [GitHub](https://github.com/codrops), [Pinterest](http://www.pinterest.com/codrops/), [Instagram](https://www.instagram.com/codropsss/)
 
