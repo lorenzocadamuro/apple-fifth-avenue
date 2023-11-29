@@ -10,6 +10,7 @@ Demo for the tutorial on how to re-create the Apple Fifth Avenue cube animation 
 
 ## Instruction
 
+- Run `nvm use` to make use of the `.nvmrc` file (to use node v10.15.3 (npm v6.4.1))
 - Run `npm i` to install all dependencies
 - Run `npm run dev` to launch the dev mode
 - Run `npm run build` to generate the built
